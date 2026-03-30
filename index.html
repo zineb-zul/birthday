@@ -87,13 +87,13 @@ function startSurprise() {
     const container = document.querySelector(".container");
 
     container.innerHTML =
-        "<h1>Happy Birthday My Love Omar ❤️</h1>" +
-        "<p>" +
+        '<h1 class="fade">Happy Birthday My Love Omar ❤️</h1>' +
+        '<p class="fade">' +
         "I wish for you a life full of happiness, success and love 💖<br><br>" +
         "May all your dreams come true ✨<br><br>" +
         "Thank you for being in my life 🌍<br><br>" +
         "I love you more than words can say ❤️" +
-        "</p>";
+        '</p>';
 
     document.getElementById("music").play();
 
@@ -109,6 +109,12 @@ function startSurprise() {
             heart.remove();
         }, 6000);
     }, 300);
+
+    // Forcer le fade-in sur les nouveaux éléments
+    const fades = container.querySelectorAll(".fade");
+    fades.forEach(el => {
+        el.style.animation = "fadeIn 2s ease-in-out";
+    });
 }
 </script>
 
