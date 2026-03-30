@@ -84,27 +84,30 @@ button:hover {
 
 <script>
 function startSurprise() {
-    document.querySelector(".container").innerHTML = `
-        <h1>Happy Birthday My Love Omar ❤️</h1>
-        <p>
-        I wish for you a life full of happiness, success and love 💖<br><br>
-        May all your dreams come true ✨<br><br>
-        Thank you for being in my life 🌍<br><br>
-        I love you more than words can say ❤️
-        </p>
-    `;
+    const container = document.querySelector(".container");
+
+    container.innerHTML =
+        "<h1>Happy Birthday My Love Omar ❤️</h1>" +
+        "<p>" +
+        "I wish for you a life full of happiness, success and love 💖<br><br>" +
+        "May all your dreams come true ✨<br><br>" +
+        "Thank you for being in my life 🌍<br><br>" +
+        "I love you more than words can say ❤️" +
+        "</p>";
 
     document.getElementById("music").play();
 
-    // ❤️ hearts animation
-    setInterval(() => {
+    // ❤️ animation
+    setInterval(function () {
         let heart = document.createElement("div");
         heart.className = "heart";
         heart.innerHTML = "❤️";
         heart.style.left = Math.random() * 100 + "vw";
         document.body.appendChild(heart);
 
-        setTimeout(() => heart.remove(), 6000);
+        setTimeout(function () {
+            heart.remove();
+        }, 6000);
     }, 300);
 }
 </script>
