@@ -26,17 +26,21 @@ h1 {
     font-size: 3em;
 }
 
+/* texte message surprise */
 p {
     font-size: 1.4em;
     margin-top: 20px;
     line-height: 1.6;
+    padding: 15px 20px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.8); /* fond noir semi-transparent */
+    color: red; /* tu peux mettre blue si tu veux */
+    display: inline-block; /* pour que le fond soit autour du texte seulement */
 }
 
 /* texte initial caché */
 .hidden {
     opacity: 0;
-    color: red; /* <-- ici tu choisis la couleur */
-    /* pour bleu, mets color: blue; */
 }
 
 /* animation texte */
@@ -90,6 +94,7 @@ button:hover {
         Thank you for being in my life 🌍<br><br>
         I love you more than words can say ❤️
     </p>
+    <br>
     <button onclick="startSurprise()">Clique ici 💖</button>
 </div>
 
