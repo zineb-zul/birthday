@@ -8,7 +8,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(120deg, #ff4e50, #fc913a);
+    background: linear-gradient(135deg, #1e1e2f, #3a0ca3);
     font-family: 'Segoe UI', sans-serif;
     color: white;
     text-align: center;
@@ -28,9 +28,10 @@ h1 {
 }
 
 p {
-    font-size: 1.5em;
+    font-size: 1.4em;
     margin-top: 20px;
-    animation: fadeIn 4s ease-in-out;
+    line-height: 1.6;
+    animation: fadeIn 3s ease-in-out;
 }
 
 button {
@@ -39,8 +40,8 @@ button {
     font-size: 18px;
     border: none;
     border-radius: 25px;
-    background: white;
-    color: #ff4e50;
+    background: #ff4d6d;
+    color: white;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -49,38 +50,23 @@ button:hover {
     transform: scale(1.1);
 }
 
+/* animation texte */
 @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
 }
 
-/* 🎈 Balloons */
-.balloon {
+/* ❤️ coeurs */
+.heart {
     position: absolute;
-    bottom: -150px;
-    width: 50px;
-    height: 70px;
-    background: red;
-    border-radius: 50%;
-    animation: float 6s infinite ease-in;
+    color: #ff4d6d;
+    font-size: 20px;
+    animation: float 6s linear infinite;
 }
 
 @keyframes float {
-    0% {transform: translateY(0);}
-    100% {transform: translateY(-100vh);}
-}
-
-/* ❤️ cœur animation */
-.heart {
-    position: absolute;
-    color: red;
-    font-size: 20px;
-    animation: fall 5s linear infinite;
-}
-
-@keyframes fall {
-    0% {transform: translateY(-10vh);}
-    100% {transform: translateY(110vh);}
+    0% {transform: translateY(100vh);}
+    100% {transform: translateY(-10vh);}
 }
 </style>
 </head>
@@ -88,34 +74,29 @@ button:hover {
 <body>
 
 <div class="container">
-    <h1>🎉 Happy Birthday Omar ❤️</h1>
-    <p>Tu es la plus belle chose dans ma vie 💖</p>
-    <button onclick="startSurprise()">Clique ici 🎁</button>
+    <h1>🎂 Happy Birthday My Love Omar ❤️</h1>
+    <p>J’ai une petite surprise pour toi...</p>
+    <button onclick="startSurprise()">Clique ici 💖</button>
 </div>
 
-<!-- 🎵 musique -->
-<audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+<!-- 🎵 musique romantique -->
+<audio id="music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=romantic-piano-110997.mp3"></audio>
 
 <script>
 function startSurprise() {
     document.querySelector(".container").innerHTML = `
-        <h1>Je t’aime Omar ❤️</h1>
-        <p>Que cette année soit pleine de bonheur 💕</p>
-        <p>Tu es mon monde 🌍</p>
+        <h1>Happy Birthday My Love Omar ❤️</h1>
+        <p>
+        I wish for you a life full of happiness, success and love 💖<br><br>
+        May all your dreams come true ✨<br><br>
+        Thank you for being in my life 🌍<br><br>
+        I love you more than words can say ❤️
+        </p>
     `;
 
     document.getElementById("music").play();
 
-    // 🎈 balloons
-    for (let i = 0; i < 10; i++) {
-        let b = document.createElement("div");
-        b.className = "balloon";
-        b.style.left = Math.random() * 100 + "vw";
-        b.style.background = ["red","pink","yellow","blue"][Math.floor(Math.random()*4)];
-        document.body.appendChild(b);
-    }
-
-    // ❤️ hearts
+    // ❤️ hearts animation
     setInterval(() => {
         let heart = document.createElement("div");
         heart.className = "heart";
@@ -123,7 +104,7 @@ function startSurprise() {
         heart.style.left = Math.random() * 100 + "vw";
         document.body.appendChild(heart);
 
-        setTimeout(() => heart.remove(), 5000);
+        setTimeout(() => heart.remove(), 6000);
     }, 300);
 }
 </script>
