@@ -8,11 +8,19 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #1e1e2f, #3a0ca3);
     font-family: 'Segoe UI', sans-serif;
     color: white;
     text-align: center;
     overflow: hidden;
+    background: linear-gradient(-45deg, #1e1e2f, #3a0ca3, #7209b7, #560bad);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 
 .container {
@@ -20,102 +28,146 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    padding: 20px;
 }
 
+/* titre animé */
 h1 {
     font-size: 3em;
+    animation: fadeDown 2s ease;
 }
 
-/* texte message surprise */
+@keyframes fadeDown {
+    from {opacity: 0; transform: translateY(-40px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* message */
 p {
     font-size: 1.4em;
     margin-top: 20px;
     line-height: 1.6;
     padding: 15px 20px;
     border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.8); /* fond noir semi-transparent */
-    color: red; /* tu peux mettre blue si tu veux */
-    display: inline-block; /* pour que le fond soit autour du texte seulement */
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #ff4d6d;
+    display: inline-block;
+    max-width: 90%;
 }
 
-/* texte initial caché */
+/* caché */
 .hidden {
     opacity: 0;
 }
 
-/* animation texte */
+/* animation apparition */
+.show {
+    animation: fadeIn 2s forwards;
+}
+
 @keyframes fadeIn {
     from {opacity: 0; transform: translateY(20px);}
     to {opacity: 1; transform: translateY(0);}
 }
 
-.show {
-    animation: fadeIn 2s forwards;
-}
-
-/* bouton */
+/* bouton stylé */
 button {
     margin-top: 30px;
-    padding: 12px 25px;
+    padding: 14px 30px;
     font-size: 18px;
     border: none;
-    border-radius: 25px;
-    background: #ff4d6d;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff4d6d, #ff758f);
     color: white;
     cursor: pointer;
     transition: 0.3s;
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.6);
 }
 
 button:hover {
     transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 77, 109, 1);
 }
 
-/* ❤️ coeurs */
+/* coeurs améliorés */
 .heart {
     position: absolute;
     color: #ff4d6d;
-    font-size: 20px;
-    animation: float 6s linear infinite;
+    animation: float linear infinite;
+    opacity: 0.8;
 }
 
 @keyframes float {
-    0% {transform: translateY(100vh);}
-    100% {transform: translateY(-10vh);}
+    0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* responsive */
+@media (max-width: 600px) {
+    h1 { font-size: 2em; }
+    p { font-size: 1.1em; }
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
     <h1>🎂 Happy Birthday My Love Omar ❤️</h1>
+
     <p id="surpriseText" class="hidden">
         I wish for you a life full of happiness, success and love 💖<br><br>
         May all your dreams come true ✨<br><br>
         Thank you for being in my life 🌍<br><br>
         I love you more than words can say ❤️
     </p>
+
     <br>
     <button onclick="startSurprise()">Clique ici 💖</button>
 </div>
 
-<audio id="music" src="romanticpiano.mp3.mp3"></audio>
+<audio id="music" src="romanticpiano.mp3"></audio>
+
 <script>
+let started = false;
+
 function startSurprise() {
-    document.getElementById("music").play();
+    if (started) return; // éviter spam
+    started = true;
+
+    const music = document.getElementById("music");
+    music.volume = 0.5;
+    music.play().catch(() => {
+        console.log("Autoplay bloqué par le navigateur");
+    });
 
     const text = document.getElementById("surpriseText");
     text.classList.remove("hidden");
     text.classList.add("show");
 
-    // ❤️ animation des coeurs
-    setInterval(function () {
+    // création coeurs améliorée
+    setInterval(() => {
         let heart = document.createElement("div");
         heart.className = "heart";
         heart.innerHTML = "❤️";
+
         heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
         document.body.appendChild(heart);
+
         setTimeout(() => heart.remove(), 6000);
-    }, 300);
+    }, 200);
 }
 </script>
 
